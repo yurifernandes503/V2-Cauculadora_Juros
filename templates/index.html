@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Juros com Gráficos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Calculadora de Juros</h1>
+    <form method="POST">
+        <label for="principal">Principal:</label>
+        <input type="text" id="principal" name="principal" required><br><br>
+        <label for="taxa_de_juros">Taxa de Juros (%):</label>
+        <input type="text" id="taxa_de_juros" name="taxa_de_juros" required><br><br>
+        <label for="tempo">Tempo (anos):</label>
+        <input type="text" id="tempo" name="tempo" required><br><br>
+        <button type="submit">Calcular e Plotar</button>
+    </form>
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
+    {% if image_base64 %}
+    <h2>Gráfico do Crescimento do Investimento</h2>
+    <img src="data:image/png;base64,{{ image_base64 }}" alt="Gráfico">
+    {% endif %}
+</body>
+</html>
